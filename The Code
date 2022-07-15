@@ -1,0 +1,284 @@
+# 2a) creating the game board
+u_board = [ [".",".",".",".","."], [".",".",".",".","."], [".",".",".",".","."], [".",".",".",".","."] ]
+
+# how it would be printed:
+'''
+for i in range(4):
+    line = u_board[i][0] + u_board[i][1] + u_board[i][2] + u_board[i][3] + u_board[i][4]
+    print(line)
+    print("-----")
+'''
+
+# 2b) user creates their board
+rq = "Please enter a row (int 0-3): "
+cq = "Please enter a column (int 0-4): "
+
+# ship 1
+while True:
+    try:
+        ur1 = int(input(rq))
+        if ur1 > -1 and ur1 < 4:
+            uc1 = int(input(cq))
+            if uc1 > -1 and uc1 < 5:
+                print("Ship 1 placed.")
+                break
+            else:
+                print("Invalid column number.")  
+        else:
+            print("Invalid row number.")
+    except:
+        print("The number must be an integer.")
+u_board[ur1][uc1] = "S"
+
+# ship 2
+while True:
+    try:
+        ur2 = int(input(rq))
+        if ur2 > -1 and ur2 < 4:
+            uc2 = int(input(cq))
+            if ur2 == ur1 and uc2 == uc1:
+                print("Ship is already placed there")
+            elif uc2 > -1 and uc2 < 5:
+                print("Ship 2 placed.")
+                break
+            else:
+                print("Invalid column number.")  
+        else:
+            print("Invalid row number.")
+    except:
+        print("The number must be an integer.")
+u_board[ur2][uc2] = "S"
+
+# ship 3
+while True:
+    try:
+        ur3 = int(input(rq))
+        if ur3 > -1 and ur3 < 4:
+            uc3 = int(input(cq))
+            if ur3 == ur1 and uc3 == uc1:
+                print("Ship is already placed there")
+            elif ur3 == ur2 and uc3 == uc2:
+                print("Ship is already placed there")
+            elif uc3 > -1 and uc3 < 5:
+                print("Ship 3 placed.")
+                break
+            else:
+                print("Invalid column number.")  
+        else:
+            print("Invalid row number.")
+    except:
+        print("The number must be an integer.")
+u_board[ur3][uc3] = "S"
+
+# ship 4
+while True:
+    try:
+        ur4 = int(input(rq))
+        if ur4 > -1 and ur4 < 4:
+            uc4 = int(input(cq))
+            if ur4 == ur1 and uc4 == uc1:
+                print("Ship is already placed there")
+            elif ur4 == ur2 and uc4 == uc2:
+                print("Ship is already placed there")
+            elif ur4 == ur3 and uc4 == uc3:
+                print("Ship is already placed there")
+            elif uc4 > -1 and uc4 < 5:
+                print("Ship 4 placed.")
+                break
+            else:
+                print("Invalid column number.")  
+        else:
+            print("Invalid row number.")
+    except:
+        print("The number must be an integer.")
+u_board[ur4][uc4] = "S"
+
+# ship 5
+while True:
+    try:
+        ur5 = int(input(rq))
+        if ur5 > -1 and ur5 < 4:
+            uc5 = int(input(cq))
+            if ur5 == ur1 and uc5 == uc1:
+                print("Ship is already placed there")
+            elif ur5 == ur2 and uc5 == uc2:
+                print("Ship is already placed there")
+            elif ur5 == ur3 and uc5 == uc3:
+                print("Ship is already placed there")
+            elif ur5 == ur4 and uc5 == uc4:
+                print("Ship is already placed there")
+            elif uc5 > -1 and uc5 < 5:
+                print("Ship 5 placed.")
+                break
+            else:
+                print("Invalid column number.")  
+        else:
+            print("Invalid row number.")
+    except:
+        print("The number must be an integer.")
+u_board[ur5][uc5] = "S"
+
+# printing out the board
+print("\nHere is your board:")
+new_u = []
+for i in range(4):
+    line = u_board[i][0] + u_board[i][1] + u_board[i][2] + u_board[i][3] + u_board[i][4]
+    new_u.append(line)
+    print(line)
+    print("-----")
+print()
+
+
+# 2c) create the computer's board positions
+import random
+# create rows
+cr1 = random.randint(0,3)
+cr2 = random.randint(0,3)
+cr3 = random.randint(0,3)
+cr4 = random.randint(0,3)
+cr5 = random.randint(0,3)
+# create columns
+cc1 = random.randint(0,4)
+cc2 = random.randint(0,4)
+cc3 = random.randint(0,4)
+cc4 = random.randint(0,4)
+cc5 = random.randint(0,4)
+
+
+# 2d) the game!!!!
+
+# creating new boards and needed variables
+
+# new boards to display the inputs
+nu_board = [ [".",".",".",".","."], [".",".",".",".","."], [".",".",".",".","."], [".",".",".",".","."] ]
+nc_board = [ [".",".",".",".","."], [".",".",".",".","."], [".",".",".",".","."], [".",".",".",".","."] ]
+
+# counters to keep track of score and turns
+u_counter = 0
+c_counter = 0
+turns = 0
+
+# the game loop
+print("Let’s play!")
+while True:
+    
+    # user's turn
+    print("User’s turn...")
+    u = 0
+    
+    # get user input
+    while u == 0:
+        try:
+            f = 0
+            while f == 0:
+                row = int(input("Please enter a row (int 0-3): "))
+                if row > -1 and row < 4:
+                    f = 1
+                else:
+                    print("Row position must be between 0-3")
+            while f == 1:
+                col = int(input("Please enter a column (int 0-4): "))
+                if col > -1 and col < 5:
+                    f = 2
+                else:
+                    print("Column position must be between 0-3")
+            if nc_board[row][col] == "X" or nc_board[row][col] == "O":
+                print("You’ve already gone here, please try again.")
+            else:
+                u = 1
+        except:
+            print("Position must be an integer.")
+    
+    # results of the input
+    if row == cr1 and col == cc1:
+        print("Hit! \nComputer’s board:")
+        nc_board[row][col] = "X"
+        u_counter += 1
+    elif row == cr2 and col == cc2:
+        print("Hit! \nComputer’s board:")
+        nc_board[row][col] = "X"
+        u_counter += 1
+    elif row == cr3 and col == cc3:
+        print("Hit! \nComputer’s board:")
+        nc_board[row][col] = "X"
+        u_counter += 1
+    elif row == cr4 and col == cc4:
+        print("Hit! \nComputer’s board:")
+        nc_board[row][col] = "X"
+        u_counter += 1
+    elif row == cr5 and col == cc5:
+        print("Hit! \nComputer’s board:")
+        nc_board[row][col] = "X"
+        u_counter += 1
+    else:
+        print("Miss! \nComputer’s board:")
+        nc_board[row][col] = "O"
+    
+    # printing the user's results on the computer's blank board
+    for g in range(4):
+        line = nc_board[g][0] + nc_board[g][1] + nc_board[g][2] + nc_board[g][3] + nc_board[g][4]
+        print(line)
+        print("-----")
+    print()
+    
+    # computer's turn
+    print("Computer’s turn...")
+    
+    # computer picks target
+    u = 0
+    while u == 0:
+        row = random.randint(0,3)
+        col = random.randint(0,4)
+        if nu_board[row][col] == "X" or nu_board[row][col] == "O":
+            continue
+        else:
+            u = 1
+    
+    # results of computer's picks
+    if row == ur1 and col == uc1:
+        print("Hit! \nUser’s board:")
+        nu_board[row][col] = "X"
+        c_counter += 1
+    elif row == ur2 and col == uc2:
+        print("Hit! \nUser’s board:")
+        nu_board[row][col] = "X"
+        c_counter += 1
+    elif row == ur3 and col == uc3:
+        print("Hit! \nUser’s board:")
+        nu_board[row][col] = "X"
+        c_counter += 1
+    elif row == ur4 and col == uc4:
+        print("Hit! \nUser’s board:")
+        nu_board[row][col] = "X"
+        c_counter += 1
+    elif row == ur5 and col == uc5:
+        print("Hit! \nUser’s board:")
+        nu_board[row][col] = "X"
+        c_counter += 1
+    else:
+        print("Miss! \nUser’s board:")
+        nu_board[row][col] = "O"
+    
+    # printing the results
+    for g in range(4):
+        line = nu_board[g][0] + nu_board[g][1] + nu_board[g][2] + nu_board[g][3] + nu_board[g][4]
+        print(line)
+        print("-----")
+    print()
+    
+    # count turn
+    turns += 1
+
+    # see if there are winners
+    if u_counter == 5:
+        break
+    elif c_counter == 5:
+        break
+
+# final output of results / winner
+if u_counter == 5:
+    print("User won in", turns, "turns!")
+elif u_counter == 5 and c_counter == 5:
+    print("User and computer tied in", turns, "turns!")
+else:
+    print("Computer won in", turns, "turns!")
